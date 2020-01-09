@@ -16,3 +16,9 @@
 | rm FILE-NAME | Delete file |
 | mv [FILE-NAME \| DIRECTORY-NAME ] DESTINATION-DIRECTORY | Move file/directory to other directory |
 | ls | List all files and directories in working directory |
+
+## Design
+
+### Sequence Diagram
+
+![uc2-sd](SD_UC2.jpg)
