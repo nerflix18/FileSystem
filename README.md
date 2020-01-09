@@ -18,7 +18,7 @@ Run `mvn test` to execute the unit tests via JUnit.
 
 ### Documentation
 
-Go [Documentation]("./Documentation") for more details.
+Go [Documentation](Documentation) for more details.
 
 ## Authors
 
