@@ -129,10 +129,11 @@ public class DirectoryServiceTest {
      */
     @Test
     public void testCreateFile() {
-        System.out.println("createFile");
+        System.out.println("testCreateFile");
         String path_to_file = ROOT_TEST + "new_file";
         Operation expResult = new Operation(new Command("nano", "Create File"), "Create file", true);
         Operation result = srv.createFile(path_to_file);
+        srv.deleteFile(path_to_file);
         assertEquals(expResult.getResult(), result.getResult());
     }
 
@@ -141,11 +142,12 @@ public class DirectoryServiceTest {
      */
     @Test
     public void testCreateFile_when_file_exists() {
-        System.out.println("createFile");
+        System.out.println("testCreateFile_when_file_exists");
         String path_to_file = ROOT_TEST + "new_file";
         srv.createFile(path_to_file);
         Operation expResult = new Operation(new Command("nano", "Create File"), "File already exists", false);
         Operation result = srv.createFile(path_to_file);
+        srv.deleteFile(path_to_file);
         assertEquals(expResult.getResult(), result.getResult());
     }
 
@@ -154,10 +156,35 @@ public class DirectoryServiceTest {
      */
     @Test
     public void testCreateFile_when_path_invalid() {
-        System.out.println("createFile");
+        System.out.println("testCreateFile_when_path_invalid");
         String path_to_file = ROOT_TEST + "invalid/new_file";
         Operation expResult = new Operation(new Command("nano", "Create File"), "O sistema não conseguiu localizar o caminho especificado", false);
         Operation result = srv.createFile(path_to_file);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of deleteFile method, of class DirectoryService.
+     */
+    @Test
+    public void testDeleteFile() {
+        System.out.println("testDeleteFile");
+        String path_to_file = ROOT_TEST + "new_file";
+        Operation expResult = new Operation(new Command("rm", "Delete File"), "File deleted", true);
+        srv.createFile(path_to_file);
+        Operation result = srv.deleteFile(path_to_file);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+    
+    /**
+     * Test of deleteFile method, of class DirectoryService.
+     */
+    @Test
+    public void testDeleteFile_non_exist_file() {
+        System.out.println("testDeleteFile");
+        String path_to_file = ROOT_TEST + "new_file";
+        Operation expResult = new Operation(new Command("rm", "Delete File"), "File doesn't exists", true);
+        Operation result = srv.deleteFile(path_to_file);
         assertEquals(expResult.getResult(), result.getResult());
     }
 
