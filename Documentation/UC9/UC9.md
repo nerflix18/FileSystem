@@ -21,3 +21,9 @@ date_last_update  permissions   type    name
     - `e`: can excute
 - type: \<DIR\> if is a folder or \<FILE\> if is a file.
 - name: name of directory/file.
+
+## Design
+
+### Sequence Diagram
+
+![uc9-sd](SD_UC9.jpg)
