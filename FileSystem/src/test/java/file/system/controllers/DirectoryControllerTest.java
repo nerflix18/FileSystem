@@ -17,24 +17,27 @@ import static org.junit.Assert.*;
  * @author Daniel
  */
 public class DirectoryControllerTest {
-    
+
     private final String ROOT_TEST = "rootTest/";
-    
+
+    private DirectoryController ctrl;
+
     public DirectoryControllerTest() {
+        ctrl = new DirectoryController();
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,10 +50,24 @@ public class DirectoryControllerTest {
         System.out.println("testCreateDir");
         String path_to_dir = "dir_test_ctrl";
         String path_working_dir = ROOT_TEST;
-        DirectoryController instance = new DirectoryController();
         String expResult = "Directory created";
-        String result = instance.createDir(path_to_dir, path_working_dir);
+        String result = ctrl.createDir(path_to_dir, path_working_dir);
+        ctrl.deleteDir(path_to_dir, path_working_dir);
         assertEquals(expResult, result);
     }
-    
+
+    /**
+     * Test of deleteDir method, of class DirectoryController.
+     */
+    @Test
+    public void testDeleteDir() {
+        System.out.println("deleteDir");
+        String path_to_dir = "dir_test_ctrl";
+        String path_working_dir = ROOT_TEST;
+        String expResult = "Directory deleted";
+        ctrl.createDir(path_to_dir, path_working_dir);
+        String result = ctrl.deleteDir(path_to_dir, path_working_dir);
+        assertEquals(expResult, result);
+    }
+
 }
