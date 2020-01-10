@@ -53,6 +53,7 @@ public class DirectoryServiceTest {
         String path_to_dir = ROOT_TEST + "dir_test";
         Operation expResult = new Operation(new Command("mkdir", "Create Directory"), "Directory created", true);
         Operation result = srv.createDir(path_to_dir);
+        srv.delete(path_to_dir);
         assertEquals(expResult.getResult(), result.getResult());
     }
     
@@ -67,6 +68,8 @@ public class DirectoryServiceTest {
         path_to_dir = ROOT_TEST + "dir_test_sub/" + "dir_test_sub_sub";
         Operation expResult = new Operation(new Command("mkdir", "Create Directory"), "Directory created", true);
         Operation result = srv.createDir(path_to_dir);
+        srv.delete(path_to_dir);
+        srv.delete(ROOT_TEST + "dir_test_sub");
         assertEquals(expResult.getResult(), result.getResult());
     }
     
@@ -80,7 +83,45 @@ public class DirectoryServiceTest {
         srv.createDir(path_to_dir);
         Operation expResult = new Operation(new Command("mkdir", "Create Directory"), "Directory already exists", false);
         Operation result = srv.createDir(path_to_dir);
-        assertEquals(expResult.toString(), result.toString());
+        srv.delete(path_to_dir);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of delete method, of class DirectoryService.
+     */
+    @Test
+    public void testDelete() {
+        System.out.println("testDelete");
+        String path_to_dir = ROOT_TEST + "dir_test_rm";
+        srv.createDir(path_to_dir);
+        Operation expResult = new Operation(new Command("rmdir", "Delete Directory"), "Directory deleted", true);
+        Operation result = srv.delete(path_to_dir);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+    
+    /**
+     * Test of delete method, of class DirectoryService.
+     */
+    @Test
+    public void testDelete_non_exist_dir() {
+        System.out.println("testDelete_non_exist_dir");
+        String path_to_dir = ROOT_TEST + "dir_test_rm";
+        Operation expResult = new Operation(new Command("rmdir", "Delete Directory"), "Directory doesn't exists", true);
+        Operation result = srv.delete(path_to_dir);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of delete method, of class DirectoryService.
+     */
+    @Test
+    public void testDelete_non_empty_dir() {
+        System.out.println("testDelete_non_empty_dir");
+        String path_to_dir = ROOT_TEST + "sys";
+        Operation expResult = new Operation(new Command("rmdir", "Delete Directory"), "Directory isnt' empty", true);
+        Operation result = srv.delete(path_to_dir);
+        assertEquals(expResult.getResult(), result.getResult());
     }
 
 }
