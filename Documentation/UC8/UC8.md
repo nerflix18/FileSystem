@@ -36,4 +36,8 @@ As user I want to move/rename file.
 ### Controller
 
 - testMoveFile()
-    - test move/rename file.
+    - test move file.
+
+- testRenameFile()
+    - test rename file.
+
