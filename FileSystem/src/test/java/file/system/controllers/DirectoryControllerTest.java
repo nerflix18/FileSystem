@@ -76,10 +76,24 @@ public class DirectoryControllerTest {
     @Test
     public void testCreateFile() {
         System.out.println("createFile");
-        String path_to_dir = "file_test_ctrl";
+        String path_to_file = "file_test_ctrl";
         String path_working_dir = ROOT_TEST;
         String expResult = "Create file";
-        String result = ctrl.createFile(path_to_dir, path_working_dir);
+        String result = ctrl.createFile(path_to_file, path_working_dir);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of deleteFile method, of class DirectoryController.
+     */
+    @Test
+    public void testDeleteFile() {
+        System.out.println("testDeleteFile");
+        String path_to_file = "file_test_ctrl";
+        String path_working_dir = ROOT_TEST;
+        String expResult = "File deleted";
+        ctrl.createFile(path_to_file, path_working_dir);
+        String result = ctrl.deleteFile(path_to_file, path_working_dir);
         assertEquals(expResult, result);
     }
 
