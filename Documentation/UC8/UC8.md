@@ -19,3 +19,21 @@ As user I want to move/rename file.
 ### Sequence Diagram
 
 ![uc8-sd](SD_UC8.jpg)
+
+## Tests
+
+### Service
+
+- testMoveFile()
+    - test move/rename file.
+
+- testMoveFile_no_source_file()
+    - test move/rename file that doesn't exists.
+
+- testMoveFile_no_destin()
+    - test mode/rename file to an invalid destination.
+
+### Controller
+
+- testMoveFile()
+    - test move/rename file.
