@@ -102,7 +102,7 @@ public class DirectoryService {
 
     public Operation moveFile(String path_to_file_source, String path_to_file_dest) {
         File file_source = new File(path_to_file_source);
-        if (file_source.isFile() && file_source.exists()) {
+        if (file_source.isFile()) {
             if (file_source.renameTo(new File(path_to_file_dest))) {
                 file_source.delete();
                 return new Operation(new Command("mv", "Move File"), "File moved", true);
@@ -110,7 +110,7 @@ public class DirectoryService {
                 return new Operation(new Command("mv", "Move File"), "Failed to move file", false);
             }
         } else {
-            return new Operation(new Command("mv", "Move File"), "Failed to move, because is a directory", false);
+            return new Operation(new Command("mv", "Move File"), "Failed to locate file", false);
         }
     }
 
