@@ -10,3 +10,9 @@ As user I want to delete a file
 
 1. FILE_NAME doesn't exists.
     - System alerts the user for that.
+
+## Design
+
+### Sequence Diagram
+
+![uc7-sd](SD_UC7.jpg)
