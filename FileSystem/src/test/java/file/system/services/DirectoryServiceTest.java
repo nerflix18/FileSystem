@@ -158,7 +158,7 @@ public class DirectoryServiceTest {
     public void testCreateFile_when_path_invalid() {
         System.out.println("testCreateFile_when_path_invalid");
         String path_to_file = ROOT_TEST + "invalid/new_file";
-        Operation expResult = new Operation(new Command("nano", "Create File"), "O sistema não conseguiu localizar o caminho especificado", false);
+        Operation expResult = new Operation(new Command("nano", "Create File"), "Failed to locate file", false);
         Operation result = srv.createFile(path_to_file);
         assertEquals(expResult.getResult(), result.getResult());
     }
@@ -175,7 +175,7 @@ public class DirectoryServiceTest {
         Operation result = srv.deleteFile(path_to_file);
         assertEquals(expResult.getResult(), result.getResult());
     }
-    
+
     /**
      * Test of deleteFile method, of class DirectoryService.
      */
@@ -185,6 +185,54 @@ public class DirectoryServiceTest {
         String path_to_file = ROOT_TEST + "new_file";
         Operation expResult = new Operation(new Command("rm", "Delete File"), "File doesn't exists", true);
         Operation result = srv.deleteFile(path_to_file);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of moveFile method, of class DirectoryService.
+     */
+    @Test
+    public void testMoveFile() {
+        System.out.println("moveFile");
+        String path_to_new_dir = ROOT_TEST + "mv_dir";
+        srv.createDir(path_to_new_dir);
+        String path_to_file_source = path_to_new_dir + "/mv_file";
+        String path_to_file_dest = ROOT_TEST + "mv_file";
+        srv.createFile(path_to_file_source);
+        Operation expResult = new Operation(new Command("mv", "Move File"), "File moved", true);
+        Operation result = srv.moveFile(path_to_file_source, path_to_file_dest);
+        srv.deleteFile(path_to_file_dest);
+        srv.delete(path_to_new_dir);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+    
+    /**
+     * Test of moveFile method, of class DirectoryService.
+     */
+    @Test
+    public void testMoveFile_no_source_file() {
+        System.out.println("moveFile");
+        String path_to_new_dir = ROOT_TEST + "mv_dir";
+        String path_to_file_source = path_to_new_dir + "mv_file";
+        String path_to_file_dest = ROOT_TEST + "mv_file";
+        Operation expResult = new Operation(new Command("mv", "Move File"), "Failed to locate file", false);
+        Operation result = srv.moveFile(path_to_file_source, path_to_file_dest);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+    
+    /**
+     * Test of moveFile method, of class DirectoryService.
+     */
+    @Test
+    public void testMoveFile_no_destin() {
+        System.out.println("moveFile");
+        String path_to_new_dir = ROOT_TEST + "mv_dir_n";
+        String path_to_file_source = ROOT_TEST + "mv_file";
+        String path_to_file_dest = path_to_new_dir + "/mv_file";
+        srv.createFile(path_to_file_source);
+        Operation expResult = new Operation(new Command("mv", "Move File"), "Failed to move file", true);
+        Operation result = srv.moveFile(path_to_file_source, path_to_file_dest);
+        srv.deleteFile(path_to_file_source);
         assertEquals(expResult.getResult(), result.getResult());
     }
 
