@@ -8,8 +8,14 @@ As user I want to delete a directory
 
 ### Restrictions
 
-    1. DIRECTORY_NAME doesn't exists.
-        - System alerts the user for that.
+1. DIRECTORY_NAME doesn't exists.
+    - System alerts the user for that.
     
-    2. DIRECTORY_NAME isn't empty.
-        - System alerts the user for that and directory isn't deleted.
+2. DIRECTORY_NAME isn't empty.
+    - System alerts the user for that and directory isn't deleted.
+
+# Design
+
+## Sequence Diagram
+
+![uc4-sd](SD_UC4.jpg)
