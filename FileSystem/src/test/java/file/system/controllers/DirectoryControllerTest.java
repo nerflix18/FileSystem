@@ -70,4 +70,17 @@ public class DirectoryControllerTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of createFile method, of class DirectoryController.
+     */
+    @Test
+    public void testCreateFile() {
+        System.out.println("createFile");
+        String path_to_dir = "file_test_ctrl";
+        String path_working_dir = ROOT_TEST;
+        String expResult = "Create file";
+        String result = ctrl.createFile(path_to_dir, path_working_dir);
+        assertEquals(expResult, result);
+    }
+
 }
