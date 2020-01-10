@@ -5,6 +5,7 @@
  */
 package file.system.presentation;
 
+import file.system.controllers.ConsultCommandsController;
 import java.util.Scanner;
 
 /**
@@ -29,6 +30,10 @@ public class FileSystem {
             System.out.print("$:" + this.location + ">");
             String command = scanner.nextLine();
             switch (command.split(" ")[0]) {
+                case "?":
+                    String result = new ConsultCommandsController().consultCommands();
+                    System.out.println(result);
+                    break;
                 case "ext":
                     exit = true;
                     break;
