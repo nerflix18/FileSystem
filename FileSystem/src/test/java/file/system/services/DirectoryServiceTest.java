@@ -205,7 +205,7 @@ public class DirectoryServiceTest {
         srv.delete(path_to_new_dir);
         assertEquals(expResult.getResult(), result.getResult());
     }
-    
+
     /**
      * Test of moveFile method, of class DirectoryService.
      */
@@ -219,7 +219,7 @@ public class DirectoryServiceTest {
         Operation result = srv.moveFile(path_to_file_source, path_to_file_dest);
         assertEquals(expResult.getResult(), result.getResult());
     }
-    
+
     /**
      * Test of moveFile method, of class DirectoryService.
      */
@@ -233,6 +233,18 @@ public class DirectoryServiceTest {
         Operation expResult = new Operation(new Command("mv", "Move File"), "Failed to move file", true);
         Operation result = srv.moveFile(path_to_file_source, path_to_file_dest);
         srv.deleteFile(path_to_file_source);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of consultDir method, of class DirectoryService.
+     */
+    @Test
+    public void testConsultDir() {
+        System.out.println("consultDir");
+        String path_to_directory = ROOT_TEST;
+        Operation expResult = new Operation(new Command("ls", "List directories/files"), "sys\n", true);
+        Operation result = srv.consultDir(path_to_directory);
         assertEquals(expResult.getResult(), result.getResult());
     }
 
