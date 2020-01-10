@@ -84,4 +84,20 @@ public class DirectoryService {
         }
     }
 
+    /**
+     * Delete File
+     *
+     * @param path_to_file string with path to where file will be deleted
+     * @return operation with file success/falied elimination
+     */
+    public Operation deleteFile(String path_to_file) {
+        File file = new File(path_to_file);
+        if (file.exists() && file.isFile()) {
+            file.delete();
+            return new Operation(new Command("rmdir", "Delete File"), "File deleted", true);
+        } else {
+            return new Operation(new Command("rmdir", "Delete File"), "File doesn't exists", false);
+        }
+    }
+
 }

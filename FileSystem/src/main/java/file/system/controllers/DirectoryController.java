@@ -40,12 +40,23 @@ public class DirectoryController {
     /**
      * Create File
      *
-     * @param path_to_dir relative path to directory
+     * @param path_to_file relative path to file
      * @param path_working_dir absolute path to working directory
      * @return string with result of operation
      */
-    public String createFile(String path_to_dir, String path_working_dir) {
-        return service.createFile(path_working_dir + path_to_dir).getResult();
+    public String createFile(String path_to_file, String path_working_dir) {
+        return service.createFile(path_working_dir + path_to_file).getResult();
+    }
+
+    /**
+     * Delete File
+     *
+     * @param path_to_file relative path to file
+     * @param path_working_dir absolute path to working directory
+     * @return string with result of operation
+     */
+    public String deleteFile(String path_to_file, String path_working_dir) {
+        return service.deleteFile(path_working_dir + path_to_file).getResult();
     }
 
 }

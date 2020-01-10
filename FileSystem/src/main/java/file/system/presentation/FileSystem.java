@@ -47,6 +47,9 @@ public class FileSystem {
                 case "nano":
                     result = new DirectoryController().createFile(command.split(" ")[1], ROOT + this.location);
                     break;
+                case "rm":
+                    result = new DirectoryController().deleteFile(command.split(" ")[1], ROOT + this.location);
+                    break;
                 case "ext":
                     exit = true;
                     result = "";
