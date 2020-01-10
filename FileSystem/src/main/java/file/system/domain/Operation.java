@@ -35,6 +35,14 @@ public class Operation {
         this.result = result;
         this.success = success;
         this.date_exec = formatter.format(new Date());
+        this.log();
+    }
+
+    /**
+     * Log Operation into System Log File
+     */
+    private void log() {
+        SystemLog.log(this);
     }
 
     /**
