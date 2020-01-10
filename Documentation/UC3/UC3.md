@@ -17,5 +17,24 @@ As user I want to create a directory.
 
 ![uc3-sd](SD_UC3.jpg)
 
+## Tests
+
+
+### Service
+
+- testCreateDir()
+    - test creating a new directory
+
+- testCreateDir_in_subfolders()
+    - test creating a new directory with subfolders
+
+- testCreateDir_when_dir_exists()
+    - test no creating a new directory that already exits
+
+### Controller
+
+- testCreateDir()
+    - test creating a new directory
+
 
     
