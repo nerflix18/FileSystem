@@ -11,6 +11,11 @@ As user I want to create a directory.
 1. DIRECTORY_NAME already exits in that path.
     - System alerts the user for that and directory isn't created.
 
+## Design
+
+### Sequence Diagram
+
+![uc3-sd](SD_UC3.jpg)
 
 
     
