@@ -16,3 +16,18 @@ As user I want to delete a file
 ### Sequence Diagram
 
 ![uc7-sd](SD_UC7.jpg)
+
+## Tests
+
+### Service
+
+- testDeleteFile()
+    - test delete file.
+
+- testDeleteFile_non_exist_file()
+    - test delete file that doesn't exists.
+
+### Controller
+
+- testDeleteFile()
+    - test delete file.
