@@ -132,4 +132,16 @@ public class DirectoryControllerTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of consultDir method, of class DirectoryController.
+     */
+    @Test
+    public void testConsultDir() {
+        System.out.println("consultDir");
+        String path_working_dir = ROOT_TEST;
+        String expResult = "sys\n";
+        String result = ctrl.consultDir(path_working_dir);
+        assertEquals(expResult, result);
+    }
+
 }
