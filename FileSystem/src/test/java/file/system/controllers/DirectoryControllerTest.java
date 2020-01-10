@@ -97,4 +97,39 @@ public class DirectoryControllerTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of moveFile method, of class DirectoryController.
+     */
+    @Test
+    public void testMoveFile() {
+        System.out.println("testMoveFile");
+        String path_to_new_dir = "mv_dir";
+        String path_to_file_source = path_to_new_dir + "mv_file";
+        String path_to_file_dest = "mv_file";
+        String path_working_dir = ROOT_TEST;
+        ctrl.createDir(path_to_new_dir, path_working_dir);
+        ctrl.createFile(path_to_file_source, path_working_dir);
+        String expResult = "File moved";
+        String result = ctrl.moveFile(path_to_file_source, path_to_file_dest, path_working_dir);
+        ctrl.deleteFile(path_to_file_dest, path_working_dir);
+        ctrl.deleteDir(path_to_new_dir, path_working_dir);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of moveFile method, of class DirectoryController.
+     */
+    @Test
+    public void testRenameFile() {
+        System.out.println("testRenameFile");
+        String path_to_file_source = "mv_file1";
+        String path_to_file_dest = "mv_file2";
+        String path_working_dir = ROOT_TEST;
+        ctrl.createFile(path_to_file_source, path_working_dir);
+        String expResult = "File moved";
+        String result = ctrl.moveFile(path_to_file_source, path_to_file_dest, path_working_dir);
+        ctrl.deleteFile(path_to_file_dest, path_working_dir);
+        assertEquals(expResult, result);
+    }
+
 }
