@@ -59,4 +59,15 @@ public class DirectoryController {
         return service.deleteFile(path_working_dir + path_to_file).getResult();
     }
 
+    /**
+     * Move File
+     *
+     * @param path_to_file_source relative source path to file
+     * @param path_to_file_dest absolute destination path to file
+     * @param path_working_dir absolute path to working directory
+     * @return string with result of operation
+     */
+    public String moveFile(String path_to_file_source, String path_to_file_dest, String path_working_dir) {
+        return service.moveFile(path_working_dir + path_to_file_source, path_working_dir + path_to_file_dest).getResult();
+    }
 }
