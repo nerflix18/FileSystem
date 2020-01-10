@@ -8,6 +8,9 @@ package file.system.services;
 import file.system.domain.Command;
 import file.system.domain.Operation;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,6 +63,25 @@ public class DirectoryService {
      */
     private boolean isEmpty(File dir) {
         return dir.list().length == 0;
+    }
+
+    /**
+     * Create Empty File
+     *
+     * @param path_to_file string with path to where new file will be created
+     * @return operation with file success/falied creation
+     */
+    public Operation createFile(String path_to_file) {
+        try {
+            boolean result = new File(path_to_file).createNewFile();
+            if (result) {
+                return new Operation(new Command("nano", "Create File"), "Create file", result);
+            } else {
+                return new Operation(new Command("nano", "Create File"), "File already exists", result);
+            }
+        } catch (IOException ex) {
+            return new Operation(new Command("nano", "Create File"), ex.getLocalizedMessage(), false);
+        }
     }
 
 }
