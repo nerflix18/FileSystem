@@ -10,6 +10,7 @@
 - [UC 8 - Move file/directory](UC8/UC8.md)
 - [UC 9 - List files and directories in working directory](UC9/UC9.md)
 - [UC 10 - Change directory](UC10/UC10.md)
+- [UC 11 - System Log of Events](UC11/UC11.md)
 
 # Domain Model
 
