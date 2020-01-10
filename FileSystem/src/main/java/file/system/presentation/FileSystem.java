@@ -41,6 +41,9 @@ public class FileSystem {
                 case "mkdir":
                     result = new DirectoryController().createDir(command.split(" ")[1], ROOT + this.location);
                     break;
+                case "rmdir":
+                    result = new DirectoryController().deleteDir(command.split(" ")[1], ROOT + this.location);
+                    break;
                 case "ext":
                     exit = true;
                     result = "";

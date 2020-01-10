@@ -15,8 +15,26 @@ public class DirectoryController {
 
     private DirectoryService service = new DirectoryService();
 
+    /**
+     * Create Directory
+     *
+     * @param path_to_dir relative path to directory
+     * @param path_working_dir absolute path to working directory
+     * @return string with result of operation
+     */
     public String createDir(String path_to_dir, String path_working_dir) {
         return service.createDir(path_working_dir + path_to_dir).getResult();
+    }
+
+    /**
+     * Delete Directory
+     *
+     * @param path_to_dir relative path to directory
+     * @param path_working_dir absolute path to working directory
+     * @return string with result of operation
+     */
+    public String deleteDir(String path_to_dir, String path_working_dir) {
+        return service.delete(path_working_dir + path_to_dir).getResult();
     }
 
 }
