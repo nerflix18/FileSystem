@@ -13,3 +13,9 @@ As user I want to move/rename file.
 
 2. FILE_DESTIN already exists in the destination path.
     - System alerts the user for that and file isn't moved/renamed.
+
+## Design
+
+### Sequence Diagram
+
+![uc8-sd](SD_UC8.jpg)
