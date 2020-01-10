@@ -11,3 +11,15 @@ As user I want to list all files and directories in working directory.
 ### Sequence Diagram
 
 ![uc9-sd](SD_UC9.jpg)
+
+## Test
+
+### Service
+
+- testConsultDir()
+    - test list directories/files in working directory
+
+### Controller
+
+- testConsultDir()
+    - test list directories/files in working directory
