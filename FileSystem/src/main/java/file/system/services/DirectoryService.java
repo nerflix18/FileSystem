@@ -9,14 +9,16 @@ import file.system.domain.Command;
 import file.system.domain.Operation;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author Daniel
  */
 public class DirectoryService {
+
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss");
 
     /**
      * Create Directory
@@ -100,6 +102,13 @@ public class DirectoryService {
         }
     }
 
+    /**
+     * Move/Rename file
+     *
+     * @param path_to_file_source relative path to source file
+     * @param path_to_file_dest absolute path to destination file
+     * @return operation with file success/falied moved
+     */
     public Operation moveFile(String path_to_file_source, String path_to_file_dest) {
         File file_source = new File(path_to_file_source);
         if (file_source.isFile()) {
@@ -114,4 +123,30 @@ public class DirectoryService {
         }
     }
 
+    /**
+     * Consult all directories and files in directory
+     *
+     * @param path_to_directory path to directory
+     * @return operation with list
+     */
+    public Operation consultDir(String path_to_directory) {
+        File file = new File(path_to_directory);
+        String[] list_dirs = file.list();
+        String result = formatInfo(list_dirs);
+        return new Operation(new Command("ls", "List all files/directories"), result, true);
+    }
+
+    /**
+     * Format information to display
+     *
+     * @param list_dirs list of directories and files
+     * @return string representation to display
+     */
+    private String formatInfo(String[] list_dirs) {
+        String result = "";
+        for (String dir : list_dirs) {
+            result += dir + "\n";
+        }
+        return result;
+    }
 }

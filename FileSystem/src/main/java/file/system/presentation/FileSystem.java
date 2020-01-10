@@ -53,6 +53,9 @@ public class FileSystem {
                 case "mv":
                     result = new DirectoryController().moveFile(command.split(" ")[1], command.split(" ")[2], ROOT + this.location);
                     break;
+                case "ls":
+                    result = new DirectoryController().consultDir(ROOT + this.location);
+                    break;
                 case "ext":
                     exit = true;
                     result = "";

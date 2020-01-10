@@ -70,4 +70,14 @@ public class DirectoryController {
     public String moveFile(String path_to_file_source, String path_to_file_dest, String path_working_dir) {
         return service.moveFile(path_working_dir + path_to_file_source, path_working_dir + path_to_file_dest).getResult();
     }
+
+    /**
+     * List all directories/files in working directory
+     *
+     * @param path_working_dir absolute path to working directory
+     * @return string with result of operation(table with info to display)
+     */
+    public String consultDir(String path_working_dir) {
+        return service.consultDir(path_working_dir).getResult();
+    }
 }
