@@ -6,5 +6,13 @@ As user I want to create a file.
 
 User types `nano path/FILE_NAME` to create an empty file. System create file in the path indicated in command.
 
+### Restrictions
+
 1. FILE_NAME already exits in that path.
     - System alerts the user for that and file isn't created.
+
+## Design
+
+### Sequence Diagram
+
+![uc5-sd](SD_UC5.jpg)
