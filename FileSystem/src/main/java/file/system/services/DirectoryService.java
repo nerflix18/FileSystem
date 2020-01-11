@@ -10,7 +10,6 @@ import file.system.domain.Operation;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -112,6 +111,7 @@ public class DirectoryService {
     public Operation moveFile(String path_to_file_source, String path_to_file_dest) {
         File file_source = new File(path_to_file_source);
         if (file_source.isFile()) {
+            System.out.println(path_to_file_source);
             if (file_source.renameTo(new File(path_to_file_dest))) {
                 file_source.delete();
                 return new Operation(new Command("mv", "Move File"), "File moved", true);
@@ -148,5 +148,34 @@ public class DirectoryService {
             result += dir + "\n";
         }
         return result;
+    }
+
+    /**
+     * Change Working directory
+     *
+     * @param path_to_directory path to new working directory
+     * @param oldLocation old working directory location
+     * @return operation with new location; if fails return operation with
+     * the old location
+     */
+    public Operation changeDir(String path_to_directory, String oldLocation) {
+        String newLocation = "";
+        if (path_to_directory.equals("..")) {
+            String[] path_split = oldLocation.split("/");
+            for (int i = 0; i < path_split.length - 1; i++) {
+                newLocation += path_split[i] + "/";
+            }
+        } else if (path_to_directory.equals("/")) {
+            newLocation = "root";
+        } else {
+            File dir = new File(oldLocation + path_to_directory);
+            if (dir.exists()) {
+                newLocation = oldLocation + path_to_directory;
+            } else {
+                System.out.print("Failed to locate directory");
+                return new Operation(new Command("cd", "Change Directory"), oldLocation, false);
+            }
+        }
+        return new Operation(new Command("cd", "Change Directory"), newLocation, true);
     }
 }

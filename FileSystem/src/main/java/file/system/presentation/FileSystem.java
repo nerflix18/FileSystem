@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class FileSystem {
 
     //Root simulation folder
-    public final String ROOT = "root";
+    public final String ROOT = "root/";
 
     //Path to working directory
     public String location;
@@ -25,7 +25,7 @@ public class FileSystem {
     public Scanner scanner = new Scanner(System.in);
 
     public FileSystem() {
-        this.location = "/";
+        this.location = ROOT;
     }
 
     public void doShow() {
@@ -39,22 +39,26 @@ public class FileSystem {
                     result = new ConsultCommandsController().consultCommands();
                     break;
                 case "mkdir":
-                    result = new DirectoryController().createDir(command.split(" ")[1], ROOT + this.location);
+                    result = new DirectoryController().createDir(command.split(" ")[1], this.location + "/");
                     break;
                 case "rmdir":
-                    result = new DirectoryController().deleteDir(command.split(" ")[1], ROOT + this.location);
+                    result = new DirectoryController().deleteDir(command.split(" ")[1], this.location + "/");
                     break;
                 case "nano":
-                    result = new DirectoryController().createFile(command.split(" ")[1], ROOT + this.location);
+                    result = new DirectoryController().createFile(command.split(" ")[1], this.location + "/");
                     break;
                 case "rm":
-                    result = new DirectoryController().deleteFile(command.split(" ")[1], ROOT + this.location);
+                    result = new DirectoryController().deleteFile(command.split(" ")[1], this.location + "/");
                     break;
                 case "mv":
-                    result = new DirectoryController().moveFile(command.split(" ")[1], command.split(" ")[2], ROOT + this.location);
+                    result = new DirectoryController().moveFile(command.split(" ")[1], command.split(" ")[2], this.location + "/");
                     break;
                 case "ls":
-                    result = new DirectoryController().consultDir(ROOT + this.location);
+                    result = new DirectoryController().consultDir(this.location);
+                    break;
+                case "cd":
+                    result = "";
+                    this.location = new DirectoryController().changeDir(command.split(" ")[1], this.location);
                     break;
                 case "ext":
                     exit = true;

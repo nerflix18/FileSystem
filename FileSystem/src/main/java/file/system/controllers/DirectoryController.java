@@ -68,7 +68,7 @@ public class DirectoryController {
      * @return string with result of operation
      */
     public String moveFile(String path_to_file_source, String path_to_file_dest, String path_working_dir) {
-        return service.moveFile(path_working_dir + path_to_file_source, path_working_dir + path_to_file_dest).getResult();
+        return service.moveFile(path_working_dir + path_to_file_source, path_to_file_dest).getResult();
     }
 
     /**
@@ -79,5 +79,16 @@ public class DirectoryController {
      */
     public String consultDir(String path_working_dir) {
         return service.consultDir(path_working_dir).getResult();
+    }
+
+    /**
+     * Change working directory
+     *
+     * @param path_to_directory path to new working directory
+     * @param oldLocation old working directory location
+     * @return Snew location
+     */
+    public String changeDir(String path_to_directory, String oldLocation) {
+        return service.changeDir(path_to_directory, oldLocation).getResult();
     }
 }
