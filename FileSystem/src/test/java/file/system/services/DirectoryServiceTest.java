@@ -248,4 +248,58 @@ public class DirectoryServiceTest {
         assertEquals(expResult.getResult(), result.getResult());
     }
 
+    /**
+     * Test of changeDir method, of class DirectoryService.
+     */
+    @Test
+    public void testChangeDir() {
+        System.out.println("testChangeDir_go_back");
+        String path_to_directory = ROOT_TEST + "my_dir";
+        srv.createDir(path_to_directory);
+        String oldLocation = "";
+        Operation expResult = new Operation(new Command("cd", "Change Directory"), path_to_directory, true);
+        Operation result = srv.changeDir(path_to_directory, oldLocation);
+        srv.delete(path_to_directory);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of changeDir method, of class DirectoryService.
+     */
+    @Test
+    public void testChangeDir_to_root() {
+        System.out.println("testChangeDir_go_back");
+        String path_to_directory = "/";
+        String oldLocation = ROOT_TEST + "mv_dir";
+        Operation expResult = new Operation(new Command("cd", "Change Directory"), "root", true);
+        Operation result = srv.changeDir(path_to_directory, oldLocation);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of changeDir method, of class DirectoryService.
+     */
+    @Test
+    public void testChangeDir_go_back() {
+        System.out.println("testChangeDir_go_back");
+        String path_to_directory = "..";
+        String oldLocation = ROOT_TEST + "mv_dir";
+        Operation expResult = new Operation(new Command("cd", "Change Directory"), ROOT_TEST, true);
+        Operation result = srv.changeDir(path_to_directory, oldLocation);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
+    /**
+     * Test of changeDir method, of class DirectoryService.
+     */
+    @Test
+    public void testChangeDir_invalid_new_location() {
+        System.out.println("testChangeDir_go_back");
+        String path_to_directory = "dir_invalid";
+        String oldLocation = ROOT_TEST + "mv_dir";
+        Operation expResult = new Operation(new Command("cd", "Change Directory"), oldLocation, true);
+        Operation result = srv.changeDir(path_to_directory, oldLocation);
+        assertEquals(expResult.getResult(), result.getResult());
+    }
+
 }
